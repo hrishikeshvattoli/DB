@@ -47,6 +47,10 @@ echo -e "Server uptime:" $UPTIME >> /tmp/output.txt
 LOAD=$(top -n 1 -b | grep "load average:" |awk '{print $11 " " $12 $13 $14 $15}')
 echo -e "Server Load:" $LOAD >> /tmp/output.txt
 
+#Check CPU usage status
+CPU=$(top -n 1 -b | grep "Cpu")
+echo -e "CPU usage status:" $CPU >> /tmp/output.txt
+
 #Processes running
          
 #File system usage
