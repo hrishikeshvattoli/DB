@@ -9,7 +9,7 @@
 # ./nginx-install.sh 
 # 
 # Date 			Modified By 	Description 
-# 15-MAY-2018  	Hrishikesh 		Original version
+# 26-Nov-2019  	Hrishikesh 		Original version
 
 
 #Install Nginx for Ubuntu Servers
