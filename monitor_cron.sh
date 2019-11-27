@@ -16,6 +16,9 @@
 #
 rm -f /var/www/html/stats/index.html
 rm -f /tmp/output.txt
+#Server Date and Time
+DT=$(date)
+echo -e "Date:" $DT >> /tmp/output.txt
 
 #Gather some basic server info
 
