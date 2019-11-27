@@ -14,7 +14,7 @@
 
 #Install Nginx for Ubuntu Servers
 
-apt-get Install Ubuntu
+apt-get install nginx
 
 # Configuration setup.
 
@@ -28,7 +28,7 @@ server {
 
         root /var/www/html;
 
-        index index.html index.htm index.nginx-debian.html;
+        index index.html index.json;
 
 
         location / {
@@ -37,7 +37,8 @@ server {
                 try_files $uri $uri/ =404;
         }
         location /stats/ {
-                alias /var/www/html; 
+                alias /var/www/html;
+                index index.html index.json; 
                 default_type text/plain;        
 }
 
@@ -81,6 +82,3 @@ systemctl start nginx
 systemctl status nginx 
 
 # End 
-
-
-
