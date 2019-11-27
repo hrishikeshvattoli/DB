@@ -14,17 +14,20 @@
 #########################################################################################
 #
 #
-rm -f /var/www/html/stats/index.html
+#
+#
+rm -f /var/www/html/stats/index.json
 rm -f /tmp/output.txt
-#Server Date and Time
-DT=$(date)
-echo -e "Date:" $DT >> /tmp/output.txt
 
 #Gather some basic server info
 
 #Check Hostname
 HOST=$(hostname)
-echo -e "Hostname:" $HOST >> /tmp/output.txt
+echo "Hostname:" $HOST >> /tmp/output.txt
+#Gather server date andtime
+
+DT=$(date)
+echo "Date:" $DT >> /tmp/output.txt
 
 #Check the IP address
 IP=$(hostname -I)
@@ -46,21 +49,30 @@ echo -e "Server uptime:" $UPTIME >> /tmp/output.txt
 
 LOAD=$(top -n 1 -b | grep "load average:" |awk '{print $11 " " $12 $13 $14 $15}')
 echo -e "Server Load:" $LOAD >> /tmp/output.txt
-
 #Check CPU usage status
 CPU=$(top -n 1 -b | grep "Cpu")
 echo -e "CPU usage status:" $CPU >> /tmp/output.txt
 
 #Processes running
-         
+
+#IO statistics
+IO=$(iostat)
+echo -e "IOstats:" $IO >> /tmp/output.txt
+
 #File system usage
-         
+
 DF=$(df -h |egrep '(Filesystem|xvd*)')
 echo -e "Disk usage:" $DF >> /tmp/output.txt
-             
+
 #Memory usage
 
 free -h > /tmp/mem.txt
 MEM=$(grep -v Mem /tmp/mem.txt)
-                                                                                                                                                                       1,12          Top
-#END
+SWAP=$(grep -v Swap /tmp/mem.txt)
+
+echo -e "Memory usage:" $MEM >> /tmp/output.txt
+echo -e "Swap usage:" $SWAP >> /tmp/output.txt
+
+jq  -R -s  'split("\n")' < /tmp/output.txt  >> /var/www/html/stats/index.json
+
+#END                                                                                                                         
