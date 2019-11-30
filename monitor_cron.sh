@@ -18,6 +18,9 @@
 #
 rm -f /var/www/html/stats/index.json
 rm -f /tmp/output.txt
+#Install the required packages
+apt-get install sysstat
+apt-get install jq
 
 #Gather some basic server info
 
