@@ -14,7 +14,7 @@
 
 #Install Nginx for Ubuntu Servers
 
-apt-get install nginx
+apt-get -y install nginx
 
 # Configuration setup.
 
