@@ -29,8 +29,8 @@ cat <<+++ >/etc/nginx/conf.d/db.conf
 # Default server configuration
 #
 server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
+	listen 80; 
+	server_name $(hostname -f); 
 
         root /var/www/html;
 
