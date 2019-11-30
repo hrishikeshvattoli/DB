@@ -16,6 +16,12 @@
 
 apt-get -y install nginx
 
+# Create the necessory folders
+
+mkdir -p /var/www/html
+mkdir -p /var/www/html/stats
+
+
 # Configuration setup.
 
 rm -f /etc/nginx/conf.d/default.conf 
@@ -42,10 +48,6 @@ server {
                 default_type text/plain;        
 }
 
-# Create the necessory folders
-
-mkdir -p /var/www/html
-mkdir -p /var/www/html/stats
 
 
 #Create a basic landing page
