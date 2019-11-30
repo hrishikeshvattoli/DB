@@ -48,7 +48,7 @@ server {
                 default_type text/plain;        
 }
 
-
++++
 
 #Create a basic landing page
 
