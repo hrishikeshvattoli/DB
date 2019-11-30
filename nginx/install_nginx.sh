@@ -47,7 +47,7 @@ server {
                 index index.html index.json; 
                 default_type text/plain;        
 }
-
+}
 +++
 
 #Create a basic landing page
