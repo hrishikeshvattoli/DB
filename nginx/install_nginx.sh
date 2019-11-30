@@ -30,7 +30,7 @@ cat <<+++ >/etc/nginx/conf.d/db.conf
 #
 server {
 	listen 80; 
-	server_name $(hostname -f); 
+	server_name $(hostname -i); 
 
         root /var/www/html;
 
