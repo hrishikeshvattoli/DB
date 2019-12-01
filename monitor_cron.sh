@@ -15,56 +15,69 @@
 #
 rm -f /var/www/html/stats/index.json
 rm -f /tmp/output.txt
-#Install the required packages
+
+# Install the required packages
+
 apt-get -y install sysstat
 apt-get -y install jq
 
 #Gather some basic server info
 
-#Check Hostname
+# Check Hostname
+
 HOST=$(hostname)
 echo "Hostname:" $HOST >> /tmp/output.txt
-#Gather server date andtime
+
+# Gather server date andtime
 
 DT=$(date)
 echo "Date:" $DT >> /tmp/output.txt
 
-#Check the IP address
+# Check the IP address
+
 IP=$(hostname -I)
 echo -e "Host IP address:" $IP >> /tmp/output.txt
 
-#Kernel version
-KERNEL=$(uname -r)
-echo -e "\nKernel Version:" $KERNEL >> /tmp/output.txt
+# Kernel version
 
-#Server Hardare
+KERNEL=$(uname -r)
+echo -e "Kernel Version:" $KERNEL >> /tmp/output.txt
+
+# Server Hardware
 ARCH=$(uname -m)
 echo -e "Server arch:" $ARCH >> /tmp/output.txt
 
-#Uptime
+# Uptime
 UPTIME=$(uptime | awk '{print $3,$4}' |cut -d , -f1)
 echo -e "Server uptime:" $UPTIME >> /tmp/output.txt
 
-#Check the system load
+# Check the system load
 
 LOAD=$(top -n 1 -b | grep "load average:" |awk '{print $11 " " $12 $13 $14 $15}')
 echo -e "Server Load:" $LOAD >> /tmp/output.txt
-#Check CPU usage status
+
+# Check CPU usage status
+
 CPU=$(top -n 1 -b | grep "Cpu")
 echo -e "CPU usage status:" $CPU >> /tmp/output.txt
 
-#Processes running
+# Processes running
 
-#IO statistics
+# IO statistics
 IO=$(iostat)
 echo -e "IOstats:" $IO >> /tmp/output.txt
+
+# Package updates available
+
+echo "Pending Package updates:" >> /tmp/output.txt
+apt list --upgradable >> /tmp/output.txt
 
 #File system usage
 
 DF=$(df -h |egrep '(Filesystem|xvd*)')
 echo -e "Disk usage:" $DF >> /tmp/output.txt
 
-#Memory usage
+# Memory usage
 
 free -h > /tmp/mem.txt
 MEM=$(grep -v Mem /tmp/mem.txt)
