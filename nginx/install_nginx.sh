@@ -41,7 +41,8 @@ server {
         location / {
                 # First attempt to serve request as file, then
                 # as directory, then fall back to displaying a 404.
-                try_files $uri $uri/ =404;
+                try_files  /index.html =404;
+
         }
         location /stats/ {
                 alias /var/www/html/stats/;
