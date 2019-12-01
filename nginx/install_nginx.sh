@@ -44,7 +44,7 @@ server {
                 try_files $uri $uri/ =404;
         }
         location /stats/ {
-                alias /var/www/html;
+                alias /var/www/html/stats/;
                 index index.html index.json; 
                 default_type text/plain;        
 }
