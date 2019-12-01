@@ -24,7 +24,8 @@ mkdir -p /var/www/html/stats
 
 # Configuration setup.
 
-rm -f /etc/nginx/conf.d/default.conf 
+rm -f /etc/nginx/conf.d/default.conf
+rm -f /etc/nginx/sites-enabled/default 
 cat <<+++ >/etc/nginx/conf.d/db.conf
 # Default server configuration
 #
